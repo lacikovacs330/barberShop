@@ -58,13 +58,25 @@ foreach($rows as $row) {
 
         for ($i = $from_hour; $i <= $to_hour; $i += $duration12) {
             $asd = date("H:i:s", $i + $duration12);
-            $stmt1 = $conn->prepare("Select * from reservation WHERE id_worker_user = '$id_w' AND date = '$day' AND time = '$asd'");
+            $stmt1 = $conn->prepare("Select * from reservation WHERE id_worker_user = '$id_w' AND date = '$day'");
             $stmt1->execute();
             $rows1 = $stmt1->fetchAll();
             foreach($rows1 as $row1) {
-                $asd = "";
+                $r_time1 = $row1["time"];
+                $r_time = strtotime($r_time1);
+                $r_duration = $row1["duration"];
+                $r_duration2 = $r_duration * 60;
+                $asd2 = date("H:i:s", $r_time + $r_duration2);
+                $r_time2 = date("H:i:s", $r_time);
+
+                if ($asd >= $r_time2 AND $asd <= $asd2)
+                {
+                    $asd = "";
+                }
+
             }
             echo '<a class="asd-text" href="appointments.php?time=' . $asd . '&day=' . $day . '&price=' . $price . '&duration=' . $duration1 . '&username=' . $_SESSION["un"] . '&id_worker_user=' . $id_w . '&id_salon=' . $id_s . '&id_user=' . $_SESSION["id_user"] . '">' . $asd . '</a>' . "<br>";
+
         }
     }
 
