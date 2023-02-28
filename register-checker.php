@@ -40,7 +40,6 @@ if (isset($_POST["sub"]) and isset($_POST["usname"]) and !empty($_POST["usname"]
             header("Location:login.php");
         }
     }
-
 }
 else
 {

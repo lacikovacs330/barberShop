@@ -28,7 +28,8 @@ foreach($rows as $row)
 {
     $duration = $row["duration"];
     $price = $row["price"];
-    echo '<form method="post" action="time_duration_checker_2.php?id_worker='.$w_id.'&duration='.$duration.'&salon_id='.$s_id.'&price='.$price.'" id="form2">';
+    $s_name = $row["service_name"];
+    echo '<form method="post" action="time_duration_checker_2.php?id_worker='.$w_id.'&duration='.$duration.'&salon_id='.$s_id.'&price='.$price.'&s_name='.$s_name.'" id="form2">';
     echo '<div class="services_center">';
     echo '<div class="services_name">';
     echo '<a>'. $row["service_name"] . '</a>';
@@ -39,7 +40,13 @@ foreach($rows as $row)
     echo '<div class="services_price">';
     echo '<a>'. $row["price"] . "FT" .'</a>';
     echo '</div>';
-    echo '<button id="select" name="select" style="border-radius: 3px; border: 0; background-color: #9E8A78; padding: 7px; justify-content: right">Választás';
+    if (isset($_SESSION["id_user"])) {
+        echo '<button id="select" name="select" style="border-radius: 3px; border: 0; background-color: #9E8A78; padding: 7px; justify-content: right">Választás';
+    }
+    else
+    {
+        echo "<a style='width: 57%; color: #ff0000'>Jelentkezz be a foglaláshoz!</a>";
+    }
     echo '</div>';
     echo '</form>';
 }

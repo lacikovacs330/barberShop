@@ -14,10 +14,11 @@ if (isset($_POST["reserv-sb"]) and isset($_POST["email"]) and !empty($_POST["ema
     $email = $_POST["email"];
     $id_w = $_POST["id_w"];
     $id_s = $_POST["id_s"];
+    $s_name = $_POST["s_name"];
     $id_user = $_POST["id_u"];
 
-    $pdoQuery = $conn->prepare("INSERT INTO reservation (id_salon,id_worker_user,id_user,username,email,duration,price,date,time) VALUES (?,?,?,?,?,?,?,?,?)");
-    $pdoQuery->execute([$id_s,$id_w,$id_user,$username,$email,$time,$price,$day,$hour]);
+    $pdoQuery = $conn->prepare("INSERT INTO reservation (id_salon,id_worker_user,id_user,username,email,duration,price,service_name,date,time) VALUES (?,?,?,?,?,?,?,?,?,?)");
+    $pdoQuery->execute([$id_s,$id_w,$id_user,$username,$email,$time,$price,$s_name,$day,$hour]);
 
     header("Location:salons.php?r=6");
 

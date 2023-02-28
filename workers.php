@@ -59,14 +59,8 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         ';
 
-                            if (isset($_SESSION["id_user"]))
-                            {
+
                                 echo '<div class="card-body"><button type="button" class="btn" id="buttonw" name="buttonw" style="background-color: #9E8A78"><a href="time_duration.php?id='.$id_user.'&salon_id='.$id_salon.'" style="text-decoration: none; color: #000000;">Időpont választás</a></button></div></div>';
-                            }
-                            else
-                            {
-                                echo '<div class="card-body"><a>Jelentkezz be a foglaláshoz!</a></div></div>';
-                            }
                             ?>
             <?php
                         }

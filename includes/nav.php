@@ -55,6 +55,11 @@ $conn = connectDatabase($dsn, $pdoOptions);
                         echo '<li class="nav-item"><a class="nav-link text-light" href="add_salon.php">Admin felület<span class="sr-only">(current)</span></a></li>';
                     }
 
+                    if ($row["role"] == "user")
+                    {
+                        echo '<li class="nav-item"><a class="nav-link text-light" href="reservation.php">Foglalásaim<span class="sr-only">(current)</span></a></li>';
+                    }
+
                     if ($row["role"] == "owner") {
                         echo '<li class="nav-item"><a class="nav-link text-light" href="owner_salon.php">Saját szalon<span class="sr-only">(current)</span></a></li>';
                     }

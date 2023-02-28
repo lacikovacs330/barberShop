@@ -9,6 +9,14 @@ else
     header("Location:index.php");
 }
 
+if (isset($_GET["s_name"])){
+    $time = $_GET["s_name"];
+}
+else
+{
+    header("Location:index.php");
+}
+
 if (isset($_GET["day"])){
     $id = $_GET["day"];
 }
@@ -109,13 +117,15 @@ else
     <div class="appointments-inputs">
         <form action="reserv.php" method="post">
             <label for="email">Időpont</label>
-            <input type="text" id="hour" name="hour" readonly value="<?php echo $time; ?>">
+            <input type="text" id="hour" name="hour" readonly value="<?php echo $_GET["time"]; ?>">
             <label for="email">Nap</label>
             <input type="text" id="day" name="day" readonly value="<?php echo $_GET["day"]; ?>">
             <label for="email">Ár</label>
             <input type="text" id="price" name="price" readonly value="<?php echo $_GET["price"]; ?>">
             <label for="email">Időtartam</label>
             <input type="text" id="time" name="time" readonly value="<?php echo $_GET["duration"]; ?>">
+            <label for="username">Szolgáltatás neve:</label>
+            <input type="text" id="s_name" name="s_name" readonly value="<?php echo $_GET["s_name"]; ?>">
             <label for="username">Felhasználónév</label>
             <input type="text" id="username" name="username" readonly value="<?php echo $_SESSION["un"]; ?>";>
             <label for="email">E-mail</label>

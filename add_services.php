@@ -79,6 +79,7 @@ $conn = connectDatabase($dsn, $pdoOptions);
       <td style="width: 20%; padding: 0; vertical-align: center;">' . $row["price"] . " .Ft" . '</td>
       <td style="width: 20%; padding: 0; vertical-align: center;">' . $row["duration"] . " perc" . '</td>
       <td><form action="delete_service.php?service='.$row["id_service"].'" method="post"><input type="submit" style="width: 100%; background-color: #ff0000; border: 0; border-radius: 5px; padding: 8px" value="Törlés" name="delete"></form></td>
+      <td><form action="modify_service.php?service='.$row["id_service"].'&s_name='.$row["service_name"].'&price='.$row["price"].'&duration='.$row["duration"].'" method="post"><input type="submit" style="width: 100%; background-color: #ffff00; border: 0; border-radius: 5px; padding: 8px" value="Módositás" name="modify"></form></td>
     </tr>
   </tbody>
 </table>';
@@ -88,7 +89,12 @@ $conn = connectDatabase($dsn, $pdoOptions);
 <?php
 if (isset($_GET["ok"]) and $_GET["ok"] == 2)
 {
-    echo "<div class='ok1' style='width: 50%; margin: 1rem auto;'><a>Törölve!</a></div>";
+    echo "<div class='ok1' style='width: 50%; margin: 1rem auto;'><a>Lemondva!</a></div>";
+}
+
+if (isset($_GET["ok"]) and $_GET["ok"] == 9)
+{
+    echo "<div class='ok1' style='width: 50%; margin: 1rem auto;'><a>Megváltoztatva!</a></div>";
 }
 ?>
 </div>

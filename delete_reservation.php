@@ -11,10 +11,9 @@ if (isset($_POST["delete"]))
     $name = $_GET["service"];
     echo $name;
 
-    $sql = "DELETE FROM services WHERE id_service=?";
+    $sql = "DELETE FROM reservation WHERE id_reservation=?";
     $stmt= $conn->prepare($sql);
     $stmt->execute([$name]);
 
-    header("Location:add_services.php?ok=2");
+    header("Location:reservation.php?ok=2");
 }
-
