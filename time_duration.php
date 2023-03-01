@@ -8,10 +8,7 @@ if (isset($_GET["id"])){
     $w_id = $_GET["id"];
     $s_id = $_GET["salon_id"];
 }
-else
-{
-    header("Location:salons.php");
-}
+
 
 
 ?>

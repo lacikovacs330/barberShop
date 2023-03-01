@@ -6,7 +6,6 @@ $d = date("Y-m-d");
 
 $conn = connectDatabase($dsn, $pdoOptions);
 
-
 if (isset($_GET["id"])){
     $id = $_GET["id"];
 }
@@ -15,11 +14,28 @@ else
     header("Location:salons.php");
 }
 
+
 $sql = "SELECT * FROM workers WHERE id_salon = '$id'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+$salon_id = $_GET["id"];
+$sql2 = "SELECT * FROM reservation WHERE id_salon = '$salon_id'";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute();
+
+$results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+$sql1 = "SELECT * FROM users";
+$stmt1 = $conn->prepare($sql1);
+$stmt1->execute();
+
+$results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
     <!doctype html>
     <html lang="en">
@@ -89,8 +105,85 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
      <input type="submit" value="Hozzáadás" id="add_w" name="add_w">
     </form>
-            </div>
-        </div>
+    <hr>
+    <h1 style="justify-content: center; text-align: center">Foglalások</h1><br>
+    <table class="table" style="width: 100%; text-align: center; justify-content: center; margin: 2rem auto;">
+        <thead class="thead" style="background-color: #9E8A78;">
+        <tr>
+            <th scope="col">Felhasználónév</th>
+            <th scope="col">Időtartam</th>
+            <th scope="col">Ár</th>
+            <th scope="col">Szolgáltatás név</th>
+            <th scope="col">Dátum</th>
+            <th scope="col">Időpont</th>
+            <th scope="col">Kinél</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        if ($stmt->rowCount() > 0) {
+        foreach ($results2 as $row2) {
+
+            $id_reservation = $row2["id_reservation"];
+            $duration = $row2["duration"];
+            $price = $row2["price"];
+            $service_name = $row2["service_name"];
+            $date = $row2["date"];
+            $time = $row2["time"];
+
+
+
+            ?>
+            <tr>
+                <td><?php echo $row2["username"]?></td>
+                <td><?php echo $row2["duration"] ." ". "Perc"?></td>
+                <td><?php echo $row2["price"] . " " . "FT"?></td>
+                <td><?php echo $row2["service_name"]?></td>
+                <td><?php echo $row2["date"]?></td>
+                <td><?php echo $row2["time"]?></td>
+                <td>
+                    <?php if ($stmt1->rowCount() > 0) {
+                        foreach ($results1 as $row1) {
+
+                            $fl = $row1["firstname"] ." ". $row1["lastname"];
+
+                            if ($row2["id_worker_user"] == $row1["id_user"])
+                            {
+                                echo $fl;
+                            }
+                        }
+                    }
+                    ?>
+                </td>
+                <?php echo '<td><form action="delete_reservation.php?reservation='.$id_reservation.'&salon='.$id.'" method="post"><input type="submit" style="width: 100%; background-color: #ff0000; border: 0; border-radius: 5px; padding: 8px" value="Törlés" name="delete1"></form></td>' ?>
+                <?php echo '<td><form action="modify_reservation.php?reservation=' . $id_reservation . '&salon=' . $id . '&duration='.$duration.'&price='.$price.'&service_name='.$service_name.'&date='.$date.'&time='.$time.'" method="post"><input type="submit" style="width: 100%; background-color: #ffff00; border: 0; border-radius: 5px; padding: 8px" value="Módositás" name="modify1"></form></td>' ?>
+
+            </tr>
+        <?php } ?>
+        </tbody>
+        <?php } ?>
+    </table>
+
+    <?php
+    if (isset($_GET["ok"]) and $_GET["ok"] == 11 and isset($_GET["id"]) and $_GET["id"] == $id)
+    {
+        echo "<div class='ok1' style='margin-top: 30px;'><a>Törölve</a></div>";
+    }
+    ?>
+
+    <?php
+    if (isset($_GET["ok"]) and $_GET["ok"] == 12 and isset($_GET["id"]) and $_GET["id"] == $id)
+    {
+        echo "<div class='ok1' style='margin-top: 30px;'><a>Módositva</a></div>";
+    }
+    ?>
+
+    </div>
+    </div>
+
+
     </body>
     </html>
 

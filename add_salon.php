@@ -8,6 +8,19 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$sql = "SELECT * FROM users WHERE role = 'user'";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$sql2 = "SELECT * FROM salons";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute();
+
+$results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
@@ -68,7 +81,94 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </form>
+    <div class="owner-salon">
+        <h1 style="justify-content: center">Bannolás</h1>
+    </div>
+    <hr>
 
+    <div class="add-salon">
+        <table class="table" style="width: 80%; text-align: center; justify-content: center; margin: 2rem auto;">
+            <thead class="thead" style="background-color: #9E8A78;">
+            <tr>
+                <th scope="col">Felhasználónév</th>
+                <th scope="col">Vezetéknév</th>
+                <th scope="col">Keresztnév</th>
+                <th scope="col">E-mail</th>
+                <th scope="col"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            if ($stmt->rowCount() > 0) {
+            foreach ($results as $row) {
+                ?>
+                <tr>
+                    <td><?php echo $row["username"]?></td>
+                    <td><?php echo $row["firstname"]?></td>
+                    <td><?php echo $row["lastname"]?></td>
+                    <td><?php echo $row["email"]?></td>
+                <?php
+
+                if ($row["status"] == 1) {
+                    echo '<td><form action="ban.php?id_user=' . $row["id_user"] . '" method="post"><input type="submit" style="width: 70%; background-color: #ff0000; border: 0; border-radius: 5px; padding: 8px" value="Bannolás" name="ban"></form></td>';
+                }
+                else
+                {
+                    echo '<td><form action="ban.php?id_user=' . $row["id_user"] . '" method="post"><input type="submit" style="width: 70%; background-color: #ffff00; border: 0; border-radius: 5px; padding: 8px" value="Unban" name="unban"></form></td>';
+                }
+                ?>
+            <?php } ?>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+<div class="owner-salon">
+    <h1 style="justify-content: center">Szalonadatok</h1>
+</div>
+<hr>
+
+<div class="add-salon">
+    <table class="table" style="width: 80%; text-align: center; justify-content: center; margin: 2rem auto;">
+        <thead class="thead" style="background-color: #9E8A78;">
+        <tr>
+            <th scope="col">Szalon neve</th>
+            <th scope="col">Szalon leirása</th>
+            <th scope="col"></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        if ($stmt2->rowCount() > 0) {
+            foreach ($results2 as $row2) {
+                ?>
+                <tr>
+                <td><?php echo $row2["name"]?></td>
+                <td><?php echo $row2["description"]?></td>
+                <?php
+
+                if ($row2["status"] == 1) {
+                    echo '<td><form action="ban.php?id_salon=' . $row2["id_salon"] . '" method="post"><input type="submit" style="width: 70%; background-color: #ff0000; border: 0; border-radius: 5px; padding: 8px" value="Bannolás" name="ban_salon"></form></td>';
+                }
+                else
+                {
+                    echo '<td><form action="ban.php?id_salon=' . $row2["id_salon"] . '" method="post"><input type="submit" style="width: 70%; background-color: #ffff00; border: 0; border-radius: 5px; padding: 8px" value="Unban" name="unban_salon"></form></td>';
+                }
+                ?>
+            <?php } ?>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
 

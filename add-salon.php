@@ -26,8 +26,8 @@ if (isset($_POST["add"]) and isset($_POST["username"]) and !empty($_POST["userna
         $id = $row["id_user"];
         sendMail($token, $email, "Register");
 
-        $pdoQuery = $conn->prepare("INSERT INTO salons (id_user,name,image,description) VALUES (?,?,?,?)");
-        $pdoQuery->execute([$id,$salon,$image,$desc]);
+        $pdoQuery = $conn->prepare("INSERT INTO salons (id_user,name,image,description,status) VALUES (?,?,?,?,?)");
+        $pdoQuery->execute([$id,$salon,$image,$desc,1]);
 
         header("Location:add_salon.php?ok=1");
     }

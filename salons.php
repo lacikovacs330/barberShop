@@ -25,6 +25,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php
     if ($stmt->rowCount() > 0) {
         foreach ($results as $row) {
+
+      if ($row["status"] == 1)
+      {
    echo '<div class="card" style="width: 18rem;">
             <img class="card-img-top" src="img/' . $row["image"] .'" alt="Kép" style="width: 100%" height="380px">
             <div class="card-body">
@@ -33,7 +36,13 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="card-body">
             <button type="button" id="buttons" name="buttons" class="btn" style="background-color: #9E8A78"><a href="workers.php?id='. $row["id_salon"] .'" style="text-decoration: none; color: black;">Fodrászok</a></button>
-        </div>';?>
+        </div>';
+      }
+      else
+      {
+
+      }
+      ?>
     </div>
 <?php } ?>
 <?php } ?>

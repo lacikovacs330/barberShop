@@ -18,6 +18,8 @@ $conn = connectDatabase($dsn, $pdoOptions);
 
 <?php
 
+
+
 $sql = "SELECT * FROM reservation WHERE id_user = '$_SESSION[id_user]'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
