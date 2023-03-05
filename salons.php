@@ -21,6 +21,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <div class="salons">
     <?php
     if ($stmt->rowCount() > 0) {
@@ -58,6 +59,7 @@ if (isset($_GET["error"]) && $_GET["error"] == 1)
 }
 ?>
 </div>
+
 </body>
 </html>
 

@@ -366,6 +366,12 @@ input[type=submit]:hover {
     text-align: center;
 }
 
+.live-search-result {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+
 
 
 

@@ -14,6 +14,8 @@ if (isset($_POST["sub"]) and isset($_POST["s_name1"]) and !empty($_POST["s_name1
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':service',$service , PDO::PARAM_STR);
     $stmt->execute();
+
+    
     header("Location:add_services.php?ok=9");
 }
 else

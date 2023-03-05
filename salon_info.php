@@ -30,6 +30,18 @@ $stmt2->execute();
 
 $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
+$sql4 = "SELECT * FROM reservation_deleted WHERE id_salon = '$salon_id'";
+$stmt4 = $conn->prepare($sql4);
+$stmt4->execute();
+
+$results4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
+
+$sql5 = "SELECT * FROM reservation_archived WHERE id_salon = '$salon_id'";
+$stmt5 = $conn->prepare($sql5);
+$stmt5->execute();
+
+$results5 = $stmt5->fetchAll(PDO::FETCH_ASSOC);
+
 $sql1 = "SELECT * FROM users";
 $stmt1 = $conn->prepare($sql1);
 $stmt1->execute();
@@ -119,6 +131,7 @@ $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
             <th scope="col">Kinél</th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -159,7 +172,125 @@ $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
                 </td>
                 <?php echo '<td><form action="delete_reservation.php?reservation='.$id_reservation.'&salon='.$id.'" method="post"><input type="submit" style="width: 100%; background-color: #ff0000; border: 0; border-radius: 5px; padding: 8px" value="Törlés" name="delete1"></form></td>' ?>
                 <?php echo '<td><form action="modify_reservation.php?reservation=' . $id_reservation . '&salon=' . $id . '&duration='.$duration.'&price='.$price.'&service_name='.$service_name.'&date='.$date.'&time='.$time.'" method="post"><input type="submit" style="width: 100%; background-color: #ffff00; border: 0; border-radius: 5px; padding: 8px" value="Módositás" name="modify1"></form></td>' ?>
+                <?php echo '<td><form action="archived_reservation.php?reservation=' . $id_reservation .'&salon=' . $id . '" method="post"><input type="submit" style="width: 100%; background-color: #ffA500; border: 0; border-radius: 5px; padding: 8px" value="Archiválás" name="archived"></form></td>' ?>
 
+            </tr>
+        <?php } ?>
+        </tbody>
+        <?php } ?>
+    </table>
+
+
+    <hr>
+    <h1 style="justify-content: center; text-align: center">Lemondott/Törölt foglalások</h1><br>
+    <table class="table" style="width: 100%; text-align: center; justify-content: center; margin: 2rem auto;">
+        <thead class="thead" style="background-color: #9E8A78;">
+        <tr>
+            <th scope="col">Felhasználónév</th>
+            <th scope="col">Időtartam</th>
+            <th scope="col">Ár</th>
+            <th scope="col">Szolgáltatás név</th>
+            <th scope="col">Dátum</th>
+            <th scope="col">Időpont</th>
+            <th scope="col">Kinél</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        if ($stmt4->rowCount() > 0) {
+        foreach ($results4 as $row4) {
+
+            $id_reservation = $row4["id_reservation"];
+            $duration = $row4["duration"];
+            $price = $row4["price"];
+            $service_name = $row4["service_name"];
+            $date = $row4["date"];
+            $time = $row4["time"];
+
+
+
+            ?>
+            <tr>
+                <td><?php echo $row4["username"]?></td>
+                <td><?php echo $row4["duration"] ." ". "Perc"?></td>
+                <td><?php echo $row4["price"] . " " . "FT"?></td>
+                <td><?php echo $row4["service_name"]?></td>
+                <td><?php echo $row4["date"]?></td>
+                <td><?php echo $row4["time"]?></td>
+                <td>
+                    <?php if ($stmt1->rowCount() > 0) {
+                        foreach ($results1 as $row1) {
+
+                            $fl = $row1["firstname"] ." ". $row1["lastname"];
+
+                            if ($row4["id_worker_user"] == $row1["id_user"])
+                            {
+                                echo $fl;
+                            }
+                        }
+                    }
+                    ?>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+        <?php } ?>
+    </table>
+    <hr>
+    <h1 style="justify-content: center; text-align: center">Archivált foglalások</h1><br>
+    <table class="table" style="width: 100%; text-align: center; justify-content: center; margin: 2rem auto;">
+        <thead class="thead" style="background-color: #9E8A78;">
+        <tr>
+            <th scope="col">Felhasználónév</th>
+            <th scope="col">Időtartam</th>
+            <th scope="col">Ár</th>
+            <th scope="col">Szolgáltatás név</th>
+            <th scope="col">Dátum</th>
+            <th scope="col">Időpont</th>
+            <th scope="col">Kinél</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        if ($stmt5->rowCount() > 0) {
+        foreach ($results5 as $row5) {
+
+            $id_reservation = $row5["id_reservation"];
+            $duration = $row5["duration"];
+            $price = $row5["price"];
+            $service_name = $row5["service_name"];
+            $date = $row5["date"];
+            $time = $row5["time"];
+
+
+
+            ?>
+            <tr>
+                <td><?php echo $row5["username"]?></td>
+                <td><?php echo $row5["duration"] ." ". "Perc"?></td>
+                <td><?php echo $row5["price"] . " " . "FT"?></td>
+                <td><?php echo $row5["service_name"]?></td>
+                <td><?php echo $row5["date"]?></td>
+                <td><?php echo $row5["time"]?></td>
+                <td>
+                    <?php if ($stmt1->rowCount() > 0) {
+                        foreach ($results1 as $row1) {
+
+                            $fl = $row1["firstname"] ." ". $row1["lastname"];
+
+                            if ($row5["id_worker_user"] == $row1["id_user"])
+                            {
+                                echo $fl;
+                            }
+                        }
+                    }
+                    ?>
+                </td>
+                <td><?php echo '<td><form action="archived_reservation.php?reservation=' . $id_reservation .'&salon=' . $id . '" method="post"><input type="submit" style="width: 100%; background-color: #47ff00; border: 0; border-radius: 5px; padding: 8px" value="Vissza" name="archived1"></form></td>'?></td>
             </tr>
         <?php } ?>
         </tbody>

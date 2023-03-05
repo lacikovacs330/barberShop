@@ -6,10 +6,10 @@ include "includes/functions.php";
 
 $conn = connectDatabase($dsn, $pdoOptions);
 
-if (isset($_POST["delete"]))
+if (isset($_POST["archived"]))
 {
-    $salon = $_GET["salon"];
-    $name = $_GET["service"];
+    $name = $_GET["reservation"];
+    $id = $_GET["salon"];
 
     $sql = "SELECT * FROM reservation WHERE id_reservation = '$name'";
     $stmt = $conn->prepare($sql);
@@ -29,28 +29,25 @@ if (isset($_POST["delete"]))
             $time = $row["time"];
 
 
-            $pdoQuery = $conn->prepare("INSERT INTO reservation_deleted (id_reservation ,id_salon,id_worker_user ,id_user ,username,email,duration,price,service_name,date,time) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            $pdoQuery = $conn->prepare("INSERT INTO reservation_archived (id_reservation ,id_salon,id_worker_user ,id_user ,username,email,duration,price,service_name,date,time) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             $pdoQuery->execute([$name,$id_salon,$id_worker_user,$id_user,$username,$email,$duration,$price,$service_name,$date,$time]);
         }
     }
 
 
+    $sql = "DELETE FROM reservation WHERE id_reservation=?";
+    $stmt= $conn->prepare($sql);
+    $stmt->execute([$name]);
 
-             $sql = "DELETE FROM reservation WHERE id_reservation=?";
-             $stmt= $conn->prepare($sql);
-             $stmt->execute([$name]);
-
-    header("Location:reservation.php?ok=$salon");
-
-
+    header("Location:salon_info.php?id=$id");
 }
 
-if (isset($_POST["delete1"]))
+if (isset($_POST["archived1"]))
 {
-    $salon = $_GET["salon"];
-    $id_reservation = $_GET["reservation"];
+    $name = $_GET["reservation"];
+    $id = $_GET["salon"];
 
-    $sql = "SELECT * FROM reservation WHERE id_reservation = '$id_reservation'";
+    $sql = "SELECT * FROM reservation_archived WHERE id_reservation = '$name'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -68,15 +65,15 @@ if (isset($_POST["delete1"]))
             $time = $row["time"];
 
 
-            $pdoQuery = $conn->prepare("INSERT INTO reservation_deleted (id_reservation ,id_salon,id_worker_user ,id_user ,username,email,duration,price,service_name,date,time) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            $pdoQuery->execute([$id_reservation,$id_salon,$id_worker_user,$id_user,$username,$email,$duration,$price,$service_name,$date,$time]);
+            $pdoQuery = $conn->prepare("INSERT INTO reservation (id_reservation ,id_salon,id_worker_user ,id_user ,username,email,duration,price,service_name,date,time) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            $pdoQuery->execute([$name,$id_salon,$id_worker_user,$id_user,$username,$email,$duration,$price,$service_name,$date,$time]);
         }
     }
 
-    $sql = "DELETE FROM reservation WHERE id_reservation=?";
+
+    $sql = "DELETE FROM reservation_archived WHERE id_reservation=?";
     $stmt= $conn->prepare($sql);
-    $stmt->execute([$id_reservation]);
-    header("Location:salon_info.php?ok=11&id=$salon");
+    $stmt->execute([$name]);
+
+    header("Location:salon_info.php?id=$id");
 }
-
-
