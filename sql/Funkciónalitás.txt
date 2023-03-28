@@ -1,0 +1,4 @@
+- Alkalmazottak //kész
+- Naptár
+- Email emlékeztető
+

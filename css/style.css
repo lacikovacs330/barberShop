@@ -1,0 +1,440 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.background-scroll{
+    width: 100%;
+    height: 674px;
+    background-image: url("../img/nathon-oski-EW_rqoSdDes-unsplash.jpg");
+}
+
+
+
+.introduction{
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    display: flex;
+}
+
+.introduction-logo {
+    width: 50%;
+    height: 350px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.introduction-logo img{
+    width: 20%;
+}
+
+.introduction-images{
+    width: 50%;
+    height: 350px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.introduction-images img{
+    width: 20%;
+    border-radius: 5px;
+}
+
+.introduction-text{
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.introduction-text-title{
+    margin-top: 5px;
+    text-align: center;
+    color: #9E8A78;
+    font-size: 25px;
+}
+
+.services-text-title{
+    background-color: #FCF9F5;
+    text-align: center;
+    color: #9E8A78;
+    font-size: 25px;
+    text-decoration: underline;
+}
+.services23 {
+    width: 100%;
+    height: 400px;
+    background-color: #FCF9F5;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.services-haircut{
+    width: 20%;
+    height: 250px;
+    background-color: #ffffff;
+    border: 1px dotted black;
+    margin: 4rem auto;
+    cursor: pointer;
+}
+
+.services-trimming{
+    width: 20%;
+    height: 250px;
+    background-color: #ffffff;
+    border: 1px dotted black;
+    margin: 4rem auto;
+    cursor: pointer;
+}
+
+.services-shaving{
+    width: 20%;
+    height: 250px;
+    background-color: #ffffff;
+    border: 1px dotted black;
+    margin: 4rem auto;
+    cursor: pointer;
+}
+
+.services-haircut-img{
+    width: 100%;
+    height: 150px;
+    justify-content: center;
+    text-align: center;
+}
+
+.services-haircut-img img{
+    width: 20%;
+    height: 50px;
+    margin-top: 45px;
+}
+
+.services-haircut-text{
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+    font-size: 10px;
+}
+
+.center-image-2{
+    width: 100%;
+    height: 350px;
+    justify-content: center;
+    text-align: center;
+}
+
+.center-image-2 img{
+    margin-top: 50px;
+    width: 10%;
+    height: 230px;
+}
+
+.login-system{
+    border-radius: 10px;
+    width: 30%;
+    background-color:#9E8A78;
+    margin: 7rem auto;
+    opacity: 90%;
+}
+
+.login-title{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding-top: 30px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+label{
+    color: #000000;
+}
+
+input[type=text]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=email]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #222227;
+    color: white;
+    padding: 14px 20px;
+    margin: 35px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #000000;
+}
+
+.login-inputs {
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.register-system{
+    border-radius: 10px;
+    width: 30%;
+    background-color:#9E8A78;
+    margin: 2.5rem auto;
+    opacity: 90%;
+}
+
+.register-inputs {
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.salons{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 50%;
+    justify-content: center;
+    margin: 45px;
+}
+
+.card-body{
+    justify-content: center;
+    text-align: center;
+}
+
+.card-body button{
+    background-color: #9E8A78;
+}
+
+.card-body a{
+    color: #000000;
+}
+
+.workers{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.appointments-inputs{
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.appointments-system{
+    border-radius: 10px;
+    width: 30%;
+    background-color:#9E8A78;
+    margin: 2.5rem auto;
+    opacity: 90%;
+}
+
+#date{
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #808080;
+}
+
+.error1{
+    width: 100%;
+    height: 30px;
+    background-color: #ff0000;
+    opacity: 50%;
+    justify-content: center;
+    text-align: center;
+    color: #000000;
+    margin: 0.1rem auto;
+    border-radius: 7px;
+}
+
+.ok1{
+    width: 100%;
+    height: 30px;
+    background-color: #47ff00;
+    opacity: 50%;
+    justify-content: center;
+    text-align: center;
+    color: #000000;
+    margin: 0.1rem auto;
+    border-radius: 7px;
+}
+
+.profil-inputs{
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.profil-system{
+    border-radius: 10px;
+    width: 30%;
+    background-color:#9E8A78;
+    margin: 2.5rem auto;
+    opacity: 90%;
+}
+
+.owner-salon{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+.add-salon{
+    width: 100%;
+}
+
+.services{
+    width: 100%;
+    justify-content: center;
+        display: inline;
+}
+
+.services_center
+{
+    width: 60%;
+    display: flex;
+    margin:2rem auto;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.services_name{
+    width: 80%;
+    text-align: left;
+}
+
+.services_price{
+    width: 20%;
+}
+
+.services_min{
+    width: 20%;
+}
+
+#form2{
+    margin: 1rem auto;
+    width: 90%;
+    border: 1px solid #d3d3d3;
+    border-radius: 15px;
+}
+
+#time input[type="radio"]:checked+label {
+    background-color: #76cf9f;
+}
+
+.days{
+    width: 100%;
+    text-align: center;
+}
+
+.days_2
+{
+    width: 100%;
+    text-align: center;
+}
+
+.live-search-result {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+
+
+
+
+@media only screen and (max-width: 1040px) {
+
+    .register-hr{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .register-system{
+        width: 28%;
+        height: 450px;
+        margin-bottom: 0px;
+    }
+
+    .register-inputs{
+        width: 97%;
+        margin: 0;
+        padding: 0px;
+    }
+
+    .register-system input{
+        margin: 4px;
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    .login-system{
+        width: 80%;
+    }
+
+    .center-image-2 img
+    {
+        width: 30%;
+    }
+    .introduction{
+        display: inline;
+    }
+
+    .introduction-logo{
+        width: 100%;
+    }
+
+    .introduction-images{
+        width: 100%;
+    }
+
+    .services23{
+        display: flex;
+        flex-wrap:wrap;
+        height: 1200px;
+    }
+
+    .services-haircut{
+        width: 70%;
+    }
+
+    .services-trimming{
+        width: 70%;
+    }
+
+    .services-shaving{
+        width: 70%;
+    }
+}
