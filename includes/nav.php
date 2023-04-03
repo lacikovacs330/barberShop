@@ -71,6 +71,7 @@ $conn = connectDatabase($dsn, $pdoOptions);
                     }
                             if ($row["role"] == "worker") {
                                 echo '<li class="nav-item"><a class="nav-link text-light" href="add_services.php">Szolgáltatásaim<span class="sr-only">(current)</span></a></li>';
+                                echo '<li class="nav-item"><a class="nav-link text-light" href="calendar.php">Naptár<span class="sr-only">(current)</span></a></li>';
                             }
                         }
                     }
