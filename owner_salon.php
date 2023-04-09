@@ -3,6 +3,31 @@ include "includes/nav.php";
 
 $conn = connectDatabase($dsn, $pdoOptions);
 
+if (isset($_SESSION["id_user"]))
+{
+    $sql = "SELECT * FROM users WHERE id_user = '$_SESSION[id_user]'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($stmt->rowCount() > 0) {
+        foreach ($results as $row) {
+            if ($row["role"]!="owner")
+            {
+                header("Location:index.php");
+            }
+        }
+    }
+}
+else
+{
+    header("Location:index.php");
+}
+
+
+
+
 $sql = "SELECT * FROM salons WHERE id_user = '$_SESSION[id_user]'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();

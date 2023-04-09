@@ -1,6 +1,46 @@
 <?php
 include "includes/nav.php";
 
+if (!isset($_POST["asd"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_POST["day"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_SESSION["price1"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_SESSION["duration1"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_SESSION["service_name1"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_SESSION["un"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_SESSION["id_user1"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_SESSION["id_salon1"]))
+{
+    header("Location:login.php");
+}
+
 $conn = connectDatabase($dsn, $pdoOptions);
 
 $stmt = $conn->prepare("Select * from users WHERE id_user = '$_SESSION[id_user]'");

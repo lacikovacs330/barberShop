@@ -1,38 +1,25 @@
 <?php
 include "includes/nav.php";
 
-if (isset($_GET["id_worker"])){
-    $id = $_GET["id_worker"];
-}
-else
+if (!isset($_POST["id_worker"]))
 {
-    header("Location:index.php");
+    header("Location:login.php");
 }
 
-if (isset($_GET["duration"])){
-    $id = $_GET["duration"];
-}
-else
+if (!isset($_POST["duration"]))
 {
-    header("Location:index.php");
+    header("Location:login.php");
 }
 
-if (isset($_GET["salon_id"])){
-    $id = $_GET["salon_id"];
-}
-else
+if (!isset($_POST["salon_id"]))
 {
-    header("Location:index.php");
+    header("Location:login.php");
 }
 
-if (isset($_GET["price"])){
-    $id = $_GET["price"];
-}
-else
+if (!isset($_POST["price"]))
 {
-    header("Location:index.php");
+    header("Location:login.php");
 }
-
 ?>
 
 <!doctype html>

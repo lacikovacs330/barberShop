@@ -51,12 +51,12 @@ $conn = connectDatabase($dsn, $pdoOptions);
             if (isset($_SESSION["id_user"])){
                 $stmt = $conn->query("SELECT * FROM users WHERE id_user = '$_SESSION[id_user]' ");
                 if ($row = $stmt->fetch()) {
-
 			$id_user = $row["id_user"];
-                    $_SESSION["id_user"] = $id_user;	
-				
+                    $_SESSION["id_user"] = $id_user;
+
                     if ($row["role"] == "admin") {
-                        echo '<li class="nav-item"><a class="nav-link text-light" href="add_salon.php">Admin felület<span class="sr-only">(current)</span></a></li>';
+                        echo '<li class="nav-item"><a class="nav-link text-light" href="add_salon.php">Tulajdonos add<span class="sr-only">(current)</span></a></li>';
+                        echo '<li class="nav-item"><a class="nav-link text-light" href="datatable/datatable.php">Admin<span class="sr-only">(current)</span></a></li>';
                     }
 
                     if ($row["role"] == "user")

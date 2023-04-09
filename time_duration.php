@@ -2,6 +2,10 @@
 
 include "includes/nav.php";
 
+if (!isset($_POST["id_user"]))
+{
+    header("Location:index.php");
+}
 
 $conn = connectDatabase($dsn, $pdoOptions);
 

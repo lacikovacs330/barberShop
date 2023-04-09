@@ -1,5 +1,10 @@
 <?php
 include "includes/nav.php";
+
+if (!isset($_SESSION["id_user"]))
+{
+    header("Location:index.php");
+}
 ?>
 
     <!doctype html>

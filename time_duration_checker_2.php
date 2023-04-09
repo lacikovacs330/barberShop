@@ -1,6 +1,21 @@
 <?php
 include "includes/nav.php";
 
+if (!isset($_POST["duration1"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_POST["price"]))
+{
+    header("Location:login.php");
+}
+
+if (!isset($_POST["service_name"]))
+{
+    header("Location:login.php");
+}
+
 $conn = connectDatabase($dsn, $pdoOptions);
 
 $stmt = $conn->prepare("Select * from workers_hours WHERE id_user = '$_SESSION[id_user1]'");

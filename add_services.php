@@ -4,11 +4,35 @@ include "includes/nav.php";
 
 $conn = connectDatabase($dsn, $pdoOptions);
 
+if (isset($_SESSION["id_user"]))
+{
+    $sql = "SELECT * FROM users WHERE id_user = '$_SESSION[id_user]'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($stmt->rowCount() > 0) {
+        foreach ($results as $row) {
+            if ($row["role"]!="worker")
+            {
+                header("Location:index.php");
+            }
+        }
+    }
+}
+else
+{
+    header("Location:index.php");
+}
+
 $sql1 = "SELECT * FROM reservation WHERE id_worker_user = '$_SESSION[id_user]'";
 $stmt1 = $conn->prepare($sql1);
 $stmt1->execute();
 
 $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 ?>
 <!doctype html>

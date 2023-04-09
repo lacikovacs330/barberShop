@@ -1,7 +1,12 @@
-
 <?php
 include 'includes/nav.php';
 $conn = connectDatabase($dsn, $pdoOptions);
+
+if (!isset($_SESSION["id_user"]))
+{
+    header("Location:index.php");
+}
+
 $searchErr = '';
 $employee_details='';
 if(isset($_POST['save']))

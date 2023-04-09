@@ -3,6 +3,28 @@ include "includes/functions.php";
 $conn = connectDatabase($dsn, $pdoOptions);
 session_start();
 
+if (isset($_SESSION["id_user"]))
+{
+    $sql = "SELECT * FROM users WHERE id_user = '$_SESSION[id_user]'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($stmt->rowCount() > 0) {
+        foreach ($results as $row) {
+            if ($row["role"]!="worker")
+            {
+                header("Location:index.php");
+            }
+        }
+    }
+}
+else
+{
+    header("Location:index.php");
+}
+
 $sql = "SELECT service_name,id_reservation,date,time,username FROM reservation WHERE id_worker_user ='$_SESSION[id_user]'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();

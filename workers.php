@@ -1,6 +1,10 @@
 <?php
 include "includes/nav.php";
 
+if (!isset($_POST["salons"]))
+{
+    header("Location:index.php");
+}
 
 $conn = connectDatabase($dsn, $pdoOptions);
 
