@@ -28,10 +28,10 @@ else
 }
 
 
-$sql = "SELECT * FROM users ORDER BY id_user ASC";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$sql8 = "SELECT * FROM users ORDER BY id_user ASC";
+$stmt8 = $conn->prepare($sql8);
+$stmt8->execute();
+$results8 = $stmt8->fetchAll(PDO::FETCH_ASSOC);
 
 $sql2 = "SELECT * FROM salons ORDER BY id_salon ASC";
 $stmt2 = $conn->prepare($sql2);
@@ -50,8 +50,15 @@ $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
 </head>
 <body>
+<div class="nav" style="width: 100%; height: 80px; background-color:#808080; display: flex;">
+    <div class="hrefs1" style="width: 50%; height: 40px; justify-content: center; text-align: left; margin-top: 25px; margin-left: 15px">
+        <a href="index.php" style="color: #000000; cursor:pointer;">Vissza</a>
+    </div>
+    <div class="title1" style="width: 50%; height: 40px; justify-content: center; text-align: center;">
+        <h1>Admin felület</h1>
+    </div>
+</div>
 <br /><br />
-<a href="index.php">Vissza a kezdő oldalra!</a>
 <div class="container">
     <h3 align="center">Felhasználók</h3>
     <br />
@@ -68,19 +75,19 @@ $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
             </tr>
             </thead>
             <?php
-            if ($stmt->rowCount() > 0) {
-                foreach ($results as $row) {
+            if ($stmt8->rowCount() > 0) {
+                foreach ($results8 as $row8) {
                     echo '<tr>';
-                    echo '<td>' . $row["id_user"] . '</td>';
-                    echo '<td>' . $row["username"] . '</td>';
-                    echo '<td>' . $row["email"] . '</td>';
-                    echo '<td>' . $row["status"] . '</td>';
-                    echo '<td>' . $row["role"] . '</td>';
+                    echo '<td>' . $row8["id_user"] . '</td>';
+                    echo '<td>' . $row8["username"] . '</td>';
+                    echo '<td>' . $row8["email"] . '</td>';
+                    echo '<td>' . $row8["status"] . '</td>';
+                    echo '<td>' . $row8["role"] . '</td>';
                     echo '<td>';
-                    if ($row["status"] == 0) {
-                        echo '<a href="edit_user.php?id=' . $row["id_user"] . '&status=1">Visszaállítás</a>';
+                    if ($row8["status"] == 0) {
+                        echo '<a href="edit_user.php?id=' . $row8["id_user"] . '&status=1">Visszaállítás</a>';
                     } else {
-                        echo '<a href="edit_user.php?id=' . $row["id_user"] . '&status=0">Bannolás</a>';
+                        echo '<a href="edit_user.php?id=' . $row8["id_user"] . '&status=0">Bannolás</a>';
                     }
                     echo '</td>';
                     echo '</tr>';

@@ -50,6 +50,12 @@ $sql7 = "SELECT * FROM users ORDER BY id_user ASC";
 $stmt7 = $conn->prepare($sql7);
 $stmt7->execute();
 $results7 = $stmt7->fetchAll(PDO::FETCH_ASSOC);
+
+
+$sql8 = "SELECT * FROM users ORDER BY id_user ASC";
+$stmt8 = $conn->prepare($sql8);
+$stmt8->execute();
+$results8 = $stmt8->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
@@ -152,6 +158,8 @@ $results7 = $stmt7->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </form>
+
+
 
 </body>
 </html>
