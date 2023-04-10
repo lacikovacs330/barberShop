@@ -1,6 +1,6 @@
 <?php
-include "../includes/config.php";
-include "../includes/db_config.php";
+include "includes/config.php";
+include "includes/db_config.php";
 
 $conn = connectDatabase($dsn, $pdoOptions);
 

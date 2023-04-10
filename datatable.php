@@ -1,6 +1,6 @@
 <?php
-include "../includes/config.php";
-include "../includes/db_config.php";
+include "includes/config.php";
+include "includes/db_config.php";
 session_start();
 
 $conn = connectDatabase($dsn, $pdoOptions);
@@ -17,14 +17,14 @@ if (isset($_SESSION["id_user"]))
         foreach ($results as $row) {
             if ($row["role"]!="admin")
             {
-                header("Location:../index.php");
+                header("Location:index.php");
             }
         }
     }
 }
 else
 {
-    header("Location:../index.php");
+    header("Location:index.php");
 }
 
 
@@ -51,7 +51,7 @@ $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <br /><br />
-<a href="../index.php">Vissza a kezdő oldalra!</a>
+<a href="index.php">Vissza a kezdő oldalra!</a>
 <div class="container">
     <h3 align="center">Felhasználók</h3>
     <br />

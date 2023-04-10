@@ -56,7 +56,7 @@ $conn = connectDatabase($dsn, $pdoOptions);
 
                     if ($row["role"] == "admin") {
                         echo '<li class="nav-item"><a class="nav-link text-light" href="add_salon.php">Tulajdonos add<span class="sr-only">(current)</span></a></li>';
-                        echo '<li class="nav-item"><a class="nav-link text-light" href="datatable/datatable.php">Admin<span class="sr-only">(current)</span></a></li>';
+                        echo '<li class="nav-item"><a class="nav-link text-light" href="datatable.php">Admin<span class="sr-only">(current)</span></a></li>';
                     }
 
                     if ($row["role"] == "user")

@@ -104,7 +104,7 @@ $rows = $stmt->fetchAll();
 
             <input hidden="hidden" type="text" id="id_w" name="id_w" readonly value="<?php echo $_SESSION["id_user1"]; ?>">
             <input hidden="hidden" type="text" id="id_s" name="id_s" readonly value="<?php echo $_SESSION["id_salon1"]; ?>">
-            <input hidden="text" type="text" id="id_u" name="id_u" readonly value="<?php echo $_SESSION["id_user1"]; ?>">
+            <input hidden="hidden"  type="text" id="id_u" name="id_u" readonly value="<?php echo $_SESSION["id_user"]; ?>">
 
             <?php
             if (isset($_GET["r"]) && $_GET["r"] == 6)
