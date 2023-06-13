@@ -22,6 +22,11 @@ if (isset($_POST["reserv-sb"]) and isset($_POST["email"]) and !empty($_POST["ema
     $id_user = $_POST["id_u"];
     $token = bin2hex(random_bytes(16));
 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: salons.php?error=1");
+        exit; 
+    }
+
     $pdoQuery = $conn->prepare("INSERT INTO reservation (id_salon,id_worker_user,id_user,username,email,duration,price,service_name,date,time) VALUES (?,?,?,?,?,?,?,?,?,?)");
     $pdoQuery->execute([$id_s,$id_w,$id_user,$username,$email,$time,$price,$s_name,$day,$hour]);
 

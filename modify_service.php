@@ -2,10 +2,10 @@
 include 'includes/nav.php';
 $conn = connectDatabase($dsn, $pdoOptions);
 
-$s_name = $_GET["s_name"];
-$service = $_GET["service"];
-$price = $_GET["price"];
-$duration = $_GET["duration"];
+$s_name = $_POST["service_name"];
+$service = $_POST["id_service"];
+$price = $_POST["price"];
+$duration = $_POST["duration"];
 
 ?>
 
@@ -40,6 +40,11 @@ $duration = $_GET["duration"];
             if (isset($_GET["ok"]) and $_GET["ok"] == 1)
             {
             echo "<div class='ok1' style='width: 50%; margin: 1rem auto;'><a>Megváltoztatva!</a></div>";
+            }
+
+            if (isset($_GET["ok"]) and $_GET["ok"] == 3)
+            {
+                echo "<div class='ok1' style='width: 50%; margin: 1rem auto;'><a>Ne hadjon üresen mezőket!</a><						/div>";
             }
             ?>
 

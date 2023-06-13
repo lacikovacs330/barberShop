@@ -8,7 +8,7 @@ $conn = connectDatabase($dsn, $pdoOptions);
 
 if (isset($_POST["delete"]))
 {
-    $name = $_GET["service"];
+    $name = $_POST["id_service"];
     echo $name;
 
     $sql = "DELETE FROM services WHERE id_service=?";

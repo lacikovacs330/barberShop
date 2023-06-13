@@ -2,9 +2,9 @@
 
 const PARAMS = [
     "HOST" => 'localhost',
-    "USER" => 'root',
-    "PASS" => '',
-    "DBNAME" => 'barber'
+    "USER" => 'misura',
+    "PASS" => 'CsSClJ8k4cDYlIr',
+    "DBNAME" => 'misura'
 ];
 
 $dsn = "mysql:host=" . PARAMS['HOST'] . ";dbname=" . PARAMS['DBNAME'] . ";charset=utf8mb4";

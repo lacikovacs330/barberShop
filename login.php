@@ -59,6 +59,11 @@ session_start();
                 echo "<div class='error1'><a>Aktiválja a fiókját!</a></div>";
             }
 
+		if (isset($_GET["r"]) && $_GET["r"] == 5)
+            {
+                echo "<div class='ok1'><a>Aktiválja a fiókját!</a></div>";
+            }
+
             if (isset($_GET["r"]) && $_GET["r"] == 6)
             {
                 echo "<div class='ok1'><a>Aktiválta fiókját!</a></div>";

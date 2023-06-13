@@ -37,6 +37,12 @@ $sql2 = "SELECT * FROM salons ORDER BY id_salon ASC";
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
 $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+$sql9 = "SELECT * FROM logs";
+$stmt9 = $conn->prepare($sql9);
+$stmt9->execute();
+$results9 = $stmt9->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -138,6 +144,46 @@ $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 
+<div class="container">
+    <h3 align="center">Mobile Detect</h3>
+    <br />
+    <div class="table-responsive">
+        <table id="employee_data2" class="table table-striped table-bordered">
+            <thead>
+            <tr>
+		    <th>ID</th>
+                <th>ID_USER</th>
+                <th>Device Type</th>
+                <th>HTTP ACCEPT</th>
+                <th>HTTP_USER_AGENT</th>
+                <th>IP ADDRESS</th>
+		    <th>Country Code</th>
+		    <th>Date</th>	
+            </tr>
+            </thead>
+            <?php
+            if ($stmt9->rowCount() > 0) {
+                foreach ($results9 as $row9) {
+                    echo '<tr>';
+		        echo '<td>' . $row9["id"] . '</td>';		
+                    echo '<td>' . $row9["id_user"] . '</td>';
+                    echo '<td>' . $row9["device_type"] . '</td>';
+                    echo '<td>' . $row9["http_accept"] . '</td>';
+                    echo '<td>' . $row9["http_user_agent"] . '</td>';
+                    echo '<td>' . $row9["ip_address"] . '</td>';
+			  echo '<td>' . $row9["country_code"] . '</td>';
+                    echo '<td>' . $row9["date"] . '</td>';
+                    echo '</tr>';
+                }
+            }
+            ?>
+        </table>
+    </div>
+</div>
+
+
+
+
 </body>
 </html>
 <script>
@@ -147,5 +193,9 @@ $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
     $(document).ready(function(){
         $('#employee_data1').DataTable();
+    });
+
+     $(document).ready(function(){
+        $('#employee_data2').DataTable();
     });
 </script>

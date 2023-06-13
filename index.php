@@ -12,7 +12,7 @@ include "includes/nav.php";
             content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
     />
 
-    <link
+	    <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
@@ -20,20 +20,7 @@ include "includes/nav.php";
 
 
     <style>
-        html,
-        body {
-            position: relative;
-            height: 95%;
-        }
 
-        body {
-            background: #eeeeee;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            color: #000;
-            margin: 0;
-            padding: 0;
-        }
 
         .swiper {
             width: 100%;

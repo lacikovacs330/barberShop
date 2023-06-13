@@ -14,7 +14,48 @@ $id_user = $_POST["id_user"];
 $_SESSION["id_user1"] = $id_user;
 ?>
 <link rel="stylesheet" href="css/style.css">
+<style>
+    @media only screen and (max-width: 901px) {
+        #form2{
+            height: 170px;
+        }
 
+        .services_center{
+            width: 100%;
+            text-align: center;
+            display: block;
+            margin: 0;
+        }
+
+        .services_name
+        {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .services_min{
+            margin: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .services_price{
+            margin: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        #price{
+            width: 13% !important;
+        }
+
+        #duration1{
+            width: 13% !important;
+        }
+    }
+
+</style>
 <div class="services">
 
 <?php
@@ -36,7 +77,7 @@ if ($stmt->rowCount() > 0) {
         echo '<input style="padding:0px; width:20%; border:0px; outline:0" type="text" readonly value="' . $row["duration"] . '" style="border:0px solid black" name="duration1" id="duration1"> PERC';
         echo '</div>';
         echo '<div class="services_price">';
-        echo '<input style="padding:0px; width:20%; border:0px; outline:0" type="text" readonly value="' . $row["price"] . '" style="border:0px solid black" name="price" id="price"> FT';
+        echo '<input style="padding:0px; width:50%; border:0px; outline:0" type="text" readonly value="' . $row["price"] . '" style="border:0px solid black" name="price" id="price"> FT';
         echo '</div>';
         if (isset($_SESSION["id_user"])) {
             echo '<button id="select" name="select" style="border-radius: 3px; border: 0; background-color: #9E8A78; padding: 7px; justify-content: right">Választás';
@@ -53,6 +94,8 @@ else
     echo "<h1>Ehhez a munkáshoz nincs elérhető szolgáltatás!</h1>";
     echo "</div>";
 }
+
+
 ?>
 </div>
 

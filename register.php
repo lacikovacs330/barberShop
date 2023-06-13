@@ -82,6 +82,12 @@
             {
                 echo "<div class='error1'><a>Foglalt felhasználónév!</a></div>";
             }
+
+		if (isset($_GET["error"]) and $_GET["error"] == 7)
+            {
+                echo "<div class='error1'><a>Foglalt email!</a></div>";
+            }
+
             ?>
 
             <input type="submit" value="Regisztráció" name="sub" id="sub">

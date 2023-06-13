@@ -2,6 +2,9 @@
 include 'includes/nav.php';
 
 $conn = connectDatabase($dsn, $pdoOptions);
+
+$realdate = date("Y-m-d", strtotime(" + 1 day"));
+$realtime = date("H:i:s", strtotime(" + 2 hour"));
 ?>
 
 <!doctype html>
@@ -101,8 +104,12 @@ $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
     </thead>
     <tbody>
     <?php
+    $hasStatusOne = false;
     if ($stmt->rowCount() > 0) {
         foreach ($results as $row) {
+		$date = $row["date"];
+            if ($realdate < $date){
+		$hasStatusOne = true;
             ?>
     <tr>
         <td><?php echo $row["duration"] ." ". "Perc"?></td>
@@ -120,15 +127,19 @@ $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
                 }
             }
             ?></td>
-        <?php echo '<td><form action="delete_reservation.php?service='.$row["id_reservation"].'" method="post"><input type="submit" style="width: 70%; background-color: #ff0000; border: 0; border-radius: 5px; padding: 8px" value="Lemondás" name="delete"></form></td>' ?>
+        <?php echo '<td><form action="delete_reservation.php?service='.$row["id_reservation"].'" method="post" onsubmit="return confirm(\'Biztosan le szeretnéd mondani a foglalást?\')"><input type="submit" style="width: 70%; background-color: #ff0000; border: 0; border-radius: 5px; padding: 8px" value="Lemondás" name="delete"></form></td>' ?>
+
     </tr>
-    <?php } ?>
+    <?php } 
+	}?>
     </tbody>
     <?php
     }
-    else
-    {
-        echo "<h1 style='text-align: center'>Nincs megjelenithető foglalás</h1>";
+    if (!$hasStatusOne) {
+        echo "<div style='text-align: center; justify-content: center; width: 100%;'>";
+        echo "<h1>Nincs megjeleníthető foglalásod!</h1>";
+	  echo "<h3>Ha volt foglalása, akkor lehet, hogy archiválták vagy törölték!</h3>";
+        echo "</div>";
     }
     ?>
 </table>
@@ -138,6 +149,7 @@ if (isset($_GET["ok"]) and $_GET["ok"] == 2)
 {
 echo "<div class='ok1' style='width: 50%; margin: 1rem auto;'><a>Lemondva!</a></div>";
 }
+
 ?>
 
 </body>

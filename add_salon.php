@@ -112,7 +112,7 @@ $results8 = $stmt8->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
-<form action="add-salon.php" method="post">
+<form action="add-salon.php" method="post" enctype="multipart/form-data">
     <div class="owner-salon">
         <h1 style="justify-content: center">Tulajdonos hozzáadása</h1>
     </div>
@@ -141,15 +141,36 @@ $results8 = $stmt8->fetchAll(PDO::FETCH_ASSOC);
 
 
                 <?php
-                if (isset($_GET["error"]) and $_GET["error"] = 1)
+                if (isset($_GET["error"]) and $_GET["error"] == 1)
                 {
                     echo "<div class='error1'><a>Töltsön ki minden mezőt!</a></div>";
                 }
 
-                if (isset($_GET["ok"]) and $_GET["ok"] = 1)
+                if (isset($_GET["error"]) and $_GET["error"] == 2)
+                {
+                    echo "<div class='error1'><a>Foglalt felhasználónév</a></div>";
+                }
+
+                if (isset($_GET["error"]) and $_GET["error"] == 3)
+                {
+                    echo "<div class='error1'><a>Foglalt email</a></div>";
+                }
+
+                if (isset($_GET["error"]) and $_GET["error"] == 4)
+                {
+                    echo "<div class='error1'><a>Foglalt szalon név</a></div>";
+                }
+
+                if (isset($_GET["error"]) and $_GET["error"] == 5)
+                {
+                    echo "<div class='error1'><a>Foglalt kép</a></div>";
+                }
+
+                if (isset($_GET["ok"]) and $_GET["ok"] == 1)
                 {
                     echo "<div class='ok1'><a>Hozzáadva! Erősitse meg az emailt!</a></div>";
                 }
+
                 ?>
 
 

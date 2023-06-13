@@ -18,13 +18,18 @@ if (!isset($_POST["service_name"]))
 
 $conn = connectDatabase($dsn, $pdoOptions);
 
-$stmt = $conn->prepare("Select * from workers_hours WHERE id_user = '$_SESSION[id_user1]'");
+$realtime = date("H:i:s", strtotime(" + 2 hour"));
+
+$stmt = $conn->prepare("Select * from workers_hours WHERE id_user = '$_SESSION[id_user1]' ORDER BY day");
 $stmt->execute();
 $rows = $stmt->fetchAll();
 ?>
 
 
 <?php
+
+$found_valid_date = false;
+
 if ($stmt->rowCount() > 0) {
 foreach($rows as $row) {
 
@@ -32,7 +37,8 @@ foreach($rows as $row) {
     $_SESSION["day"] = $day;
     $day_date = date("l", strtotime($day));
 
-    if ($day > date("Y-m-d")) {
+    if ($day >= date("Y-m-d")) {
+	$found_valid_date = true;
 
         switch ($day_date) {
             case 'Monday':
@@ -86,27 +92,29 @@ foreach($rows as $row) {
                 $asd2 = date("H:i:s", $r_time + $r_duration2);
                 $r_time2 = date("H:i:s", $r_time);
                 $asd3 = date("H:i:s", $r_time - $r_duration2);
+	
+		    		if ($asd < $realtime and $day === date("Y-m-d")){
+                    	$asd = "";
+            		}
 
-                if ($asd > $asd3 and $asd <= $asd2) {
-                    $asd = "";
-                }
+               		 if ($asd > $asd3 and $asd < $asd2) {
+                    	 $asd = "";
+                         }
             }
             echo "<form method='post' action='appointments.php' style='text-align: center'>
             <button style='border: 0px; background-color: white; padding: 5px' type='submit' name='asd' id='asd' value='$asd'>$asd</button>
             <input type='hidden' value='$day' name='day' id='day'>
             </form>";
-
         }
-
     }
     echo "<hr>";
     echo '</div>';
     echo '</div>';
 }
 }
-else {
+if (!$found_valid_date) {
     echo "<div style='text-align: center; justify-content: center; width: 100%;'>";
-    echo "<h1>Ehhez a munkáshoz nincsen foglalható időpont!</h1>";
+    echo "<h1>Nincs megjeleníthető időpont</h1>";
     echo "</div>";
 }
 ?>

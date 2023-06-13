@@ -65,7 +65,7 @@ if (isset($_POST["archived1"]))
             $time = $row["time"];
 
 
-            $pdoQuery = $conn->prepare("INSERT INTO reservation (id_reservation ,id_salon,id_worker_user ,id_user ,username,email,duration,price,service_name,date,time) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            $pdoQuery = $conn->prepare("INSERT INTO reservation (id_reservation ,id_salon,id_worker_user ,id_user ,username,email,duration,price,service_name,date,time) VALUES 				(?,?,?,?,?,?,?,?,?,?,?)");
             $pdoQuery->execute([$name,$id_salon,$id_worker_user,$id_user,$username,$email,$duration,$price,$service_name,$date,$time]);
         }
     }

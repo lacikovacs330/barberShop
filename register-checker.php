@@ -23,21 +23,26 @@ if (isset($_POST["sub"]) and isset($_POST["usname"]) and !empty($_POST["usname"]
     }
     else
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            header("Location:register.php?error=3");
-        }
-
-        $pdoQuery = $conn->prepare("INSERT INTO users (username,firstname,lastname,password,email,token,status,role) VALUES (?,?,?,?,?,?,?,?)");
-        $pdoQuery->execute([$username,$fname,$lname,$hashed_pass,$email,$token,'0','user']);
-
         if ($password1 != $password2)
         {
             header("Location:register.php?error=2");
         }
         else
         {
-            sendMail($token, $email, "Register");
-            header("Location:login.php?r=5");
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch();
+            if ($user)
+            {
+                header("Location:register.php?error=7");
+            }
+            else
+            {
+                $pdoQuery = $conn->prepare("INSERT INTO users (username,firstname,lastname,password,email,token,status,role) VALUES 				(?,?,?,?,?,?,?,?)");
+                $pdoQuery->execute([$username,$fname,$lname,$hashed_pass,$email,$token,'0','user']);
+                sendMail($token, $email, "Register");
+                header("Location:login.php?r=5");
+            }
         }
     }
 }
